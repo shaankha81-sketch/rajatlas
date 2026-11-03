@@ -23,7 +23,8 @@ window.addEventListener('error', function (e) { document.getElementById('out').t
     // independence: the site stands alone and links to none of the author's other sites
     var external = Array.prototype.slice.call(d.querySelectorAll('a[href^="http"]')).map(function (a) { return a.getAttribute('href'); });
     check('the only outside link on the page is the Wikipedia credit', external.length === 1 && /^https:\/\/en\.wikipedia\.org\//.test(external[0]), external.join(' | '));
-    check('no link, form or frame points to another site', !d.querySelector('iframe, form[action^="http"], link[rel="canonical"][href*="workers.dev"]'));
+    var canon = d.querySelector('link[rel="canonical"]');
+    check('no link, form or frame points to another site; the canonical address belongs to this site', !d.querySelector('iframe, form[action^="http"]') && !!canon && /^https:\/\/rajatlas\./.test(canon.getAttribute('href')), canon && canon.getAttribute('href'));
     check('canvas label mentions 33 districts', /33/.test(canvas.getAttribute('aria-label')), canvas.getAttribute('aria-label'));
 
     // hover sweep over the whole canvas; the tooltip names the district under the pointer

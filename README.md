@@ -54,6 +54,12 @@ Then open http://127.0.0.1:8765/. In-browser tests: `tests.html` (projection and
 
 `wrangler.jsonc` serves the `site/` folder as static files and uses `site/404.html` for unknown addresses. A custom domain can be added later in the Cloudflare project settings.
 
+## Search engines
+
+* `site/googlec8e965a58b9d3a68.html` is the Google Search Console verification file (the same account token as the portfolio's). Keep it; removing it un-verifies the site.
+* `site/sitemap.xml` and the `Sitemap:` line in `site/robots.txt` list the site's address. `site/index.html` has a canonical address and share tags.
+* If the site ever moves to another address (for example a custom domain), change that address in `sitemap.xml`, `robots.txt` and the two tags in `index.html`, and check the test in `tests-e2e.html` that expects `https://rajatlas.`.
+
 ## What is checked
 
 * `ingest_current_districts.py` requires the list's two tables to agree and records every contradiction found on the source page.

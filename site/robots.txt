@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://rajatlas.shaankha81.workers.dev/sitemap.xml
