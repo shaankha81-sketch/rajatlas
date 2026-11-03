@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>RajAtlas browser tests</title>
+<style>body{margin:0;font:13px/1.45 ui-monospace,Consolas,monospace}#out{padding:8px;white-space:pre-wrap}.fail{color:#b00020;font-weight:700}.pass{color:#15803d}iframe{position:absolute;left:-3000px;width:1280px;height:1400px;border:0}</style></head>
+<body><div id="out">running...</div><iframe id="f" src="index.html"></iframe>
+<script>
+window.addEventListener('unhandledrejection', function (e) { document.getElementById('out').textContent = 'TEST ERROR: ' + (e.reason && (e.reason.stack || e.reason)); });
+window.addEventListener('error', function (e) { document.getElementById('out').textContent = 'TEST ERROR: ' + e.message + ' line ' + e.lineno; });
+(function () {
+  var out = [], failed = 0, total = 0;
+  function check(n, ok, d) { total++; if (!ok) failed++; out.push('<span class="' + (ok ? 'pass">PASS ' : 'fail">FAIL ') + '</span>' + n + (d ? '  (' + d + ')' : '')); }
+  function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  var f = document.getElementById('f');
+  f.addEventListener('load', async function () {
+    var w = f.contentWindow, d = w.document, errors = [];
+    w.addEventListener('error', function (e) { errors.push(e.message); });
+    for (var i = 0; i < 40 && d.querySelectorAll('.dist').length !== 33; i++) await sleep(100);
+    var canvas = d.getElementById('map'), r = canvas.getBoundingClientRect();
+    function ev(type, x, y) { return new w.PointerEvent(type, { clientX: r.left + x, clientY: r.top + y, bubbles: true }); }
+    function click(x, y) { canvas.dispatchEvent(new w.MouseEvent('click', { clientX: r.left + x, clientY: r.top + y, bubbles: true })); }
+    function txt(sel) { var n = d.querySelector(sel); return n ? n.textContent.trim() : ''; }
+
+    check('data loaded: 33 districts in the list', d.querySelectorAll('.dist').length === 33);
+    // independence: the site stands alone and links to none of the author's other sites
+    var external = Array.prototype.slice.call(d.querySelectorAll('a[href^="http"]')).map(function (a) { return a.getAttribute('href'); });
+    check('the only outside link on the page is the Wikipedia credit', external.length === 1 && /^https:\/\/en\.wikipedia\.org\//.test(external[0]), external.join(' | '));
+    check('no link, form or frame points to another site', !d.querySelector('iframe, form[action^="http"], link[rel="canonical"][href*="workers.dev"]'));
+    check('canvas label mentions 33 districts', /33/.test(canvas.getAttribute('aria-label')), canvas.getAttribute('aria-label'));
+
+    // hover sweep over the whole canvas; the tooltip names the district under the pointer
+    var seen = {}, where = {}, step = 5;
+    for (var y = 0; y < r.height; y += step) for (var x = 0; x < r.width; x += step) {
+      canvas.dispatchEvent(ev('pointermove', x, y));
+      var tip = d.getElementById('tip');
+      if (!tip.hidden) { var nm = tip.textContent.split(':')[0]; seen[nm] = (seen[nm] || 0) + 1; if (!where[nm]) where[nm] = [x, y]; }
+    }
+    check('hit-testing reaches all 33 districts', Object.keys(seen).length === 33, Object.keys(seen).length + ' found');
+    canvas.dispatchEvent(new w.PointerEvent('pointerleave', { bubbles: true }));
+    check('tooltip hides when the pointer leaves', d.getElementById('tip').hidden);
+
+    // click selects
+    click(where['Jaisalmer'][0], where['Jaisalmer'][1]);
+    check('click selects Jaisalmer', txt('#panel .dname') === 'Jaisalmer', txt('#panel .dname'));
+    check('URL records the selection', w.location.hash === '#d=jaisalmer', w.location.hash);
+    check('Jaisalmer is ranked 1 of 33 by area', /1 of 33/.test(txt('#panel')), '');
+    check('Jaisalmer area is shown with grouping', /38,442\.4 km²/.test(txt('#panel')));
+    check('Jaisalmer shows a Pakistan border', /Border with Pakistan/.test(txt('#panel')) && /470 km/.test(txt('#panel')));
+    check('Jaisalmer shows its division in the current list (Jodhpur division)', /Jodhpur division/.test(txt('#panel')), '');
+    check('"Districts today" lists 8 new districts', d.querySelectorAll('#cur-new li').length === 8, d.querySelectorAll('#cur-new li').length + ' items');
+    check('"Districts today" states 41 districts in 7 divisions with 8 not drawn', /41 districts in 7 divisions/.test(txt('#cur-lead')) && /8 of them/.test(txt('#cur-lead')), txt('#cur-lead'));
+    check('new districts show their division (Balotra, Jodhpur division)', /Balotra · Jodhpur division/.test(txt('#cur-new')), txt('#cur-new'));
+    check('Wikipedia is credited with a link and licence', !!d.querySelector('#credit2 a[href*="wikipedia.org"]') && /CC BY-SA 4\.0/.test(txt('#credit2')), txt('#credit2'));
+    check('the note names the revision and says the figures are not shown', /1381020334/.test(txt('#cur-note')) && /not shown/.test(txt('#cur-note')));
+    check('screen-reader status announces the selection', txt('#status') === 'Selected: Jaisalmer', txt('#status'));
+    check('list marks the selected district', d.querySelector('.dist[aria-pressed="true"]') && d.querySelector('.dist[aria-pressed="true"]').getAttribute('data-id') === 'jaisalmer');
+
+    // neighbour chips
+    var chips = Array.prototype.slice.call(d.querySelectorAll('#panel .chips button.chip')).map(function (b) { return b.textContent; });
+    check('Jaisalmer neighbours are Barmer, Bikaner, Jodhpur', chips.join() === 'Barmer,Bikaner,Jodhpur', chips.join());
+    d.querySelector('#panel .chips button.chip').click();
+    check('clicking a neighbour chip selects it', txt('#panel .dname') === 'Barmer' && w.location.hash === '#d=barmer', txt('#panel .dname'));
+
+    // search in three scripts
+    function search(q) { var i = d.getElementById('search'); i.value = q; i.dispatchEvent(new w.Event('input', { bubbles: true })); return Array.prototype.slice.call(d.querySelectorAll('.dist')).map(function (b) { return b.getAttribute('data-id'); }); }
+    var a = search('jai');            check('search "jai" finds Jaipur and Jaisalmer', a.join() === 'jaipur,jaisalmer', a.join());
+    a = search('जयपुर');               check('search in Hindi finds Jaipur', a.join() === 'jaipur', a.join());
+    a = search('جے پور');              check('search in Urdu finds Jaipur', a.join() === 'jaipur', a.join());
+    a = search('zzz');                 check('search with no match shows the empty message', a.length === 0 && !d.getElementById('list-none').hidden);
+    a = search('');                    check('clearing the search restores all 33', a.length === 33);
+
+    // layers
+    var sel = d.getElementById('layer');
+    function layer(v) { sel.value = v; sel.dispatchEvent(new w.Event('change', { bubbles: true })); return Array.prototype.slice.call(d.querySelectorAll('#legend .item')); }
+    var items = layer('border');
+    var counts = items.map(function (it) { return parseInt(it.querySelector('.count').textContent.replace(/\D/g, ''), 10); });
+    check('border layer has 3 classes and 4 Pakistan-border districts', items.length === 3 && counts[0] === 4, counts.join());
+    check('border layer classes add up to 33', counts.reduce(function (s, v) { return s + v; }, 0) === 33);
+    ['area', 'perim', 'compact', 'nbrs'].forEach(function (k) {
+      var it = layer(k), c = it.map(function (x) { return parseInt(x.querySelector('.count').textContent.replace(/\D/g, ''), 10); });
+      check('layer "' + k + '": 2 to 5 classes, all 33 districts counted, none empty', it.length >= 2 && it.length <= 5 && c.reduce(function (s, v) { return s + v; }, 0) === 33 && c.every(function (v) { return v > 0; }), it.length + ' classes: ' + c.join('/'));
+    });
+    layer('area');
+
+    // theme
+    var t1 = d.documentElement.getAttribute('data-theme');
+    var sw1 = w.getComputedStyle(d.querySelector('#legend .sw')).backgroundColor;
+    d.getElementById('theme').click();
+    var t2 = d.documentElement.getAttribute('data-theme');
+    var sw2 = w.getComputedStyle(d.querySelector('#legend .sw')).backgroundColor;
+    check('theme toggle flips data-theme and the colour ramp', t1 !== t2 && sw1 !== sw2, t1 + ' -> ' + t2 + ', ' + sw1 + ' -> ' + sw2);
+    d.getElementById('theme').click();
+    check('toggling twice returns to the starting theme and colours', d.documentElement.getAttribute('data-theme') === t1 && w.getComputedStyle(d.querySelector('#legend .sw')).backgroundColor === sw1);
+
+    // languages
+    var ls = d.getElementById('lang');
+    ls.value = 'hi'; ls.dispatchEvent(new w.Event('change', { bubbles: true }));
+    check('Hindi: lang=hi, dir=ltr, panel name in Devanagari', d.documentElement.lang === 'hi' && d.documentElement.dir === 'ltr' && txt('#panel .dname') === 'बाड़मेर', txt('#panel .dname'));
+    check('Hindi: division row is translated', /संभाग/.test(txt('#panel')), '');
+    check('Hindi: "Districts today" is translated', /संभागों/.test(txt('#cur-lead')), txt('#cur-lead'));
+    check('Hindi: heading translated', /राजस्थान/.test(txt('h1')), txt('h1'));
+    ls.value = 'ur'; ls.dispatchEvent(new w.Event('change', { bubbles: true }));
+    check('Urdu: lang=ur and dir=rtl', d.documentElement.lang === 'ur' && d.documentElement.dir === 'rtl');
+    check('Urdu: panel name in Urdu script', txt('#panel .dname') === 'باڑمیر', txt('#panel .dname'));
+    check('Urdu: division row is translated', /ڈویژن/.test(txt('#panel')), '');
+    check('Urdu: numbers stay Latin and isolated', !!d.querySelector('#panel bdi.num') && /28,420\.6/.test(txt('#panel')));
+    ls.value = 'en'; ls.dispatchEvent(new w.Event('change', { bubbles: true }));
+    check('back to English restores the English name', txt('#panel .dname') === 'Barmer');
+
+    check('no script errors during the run', errors.length === 0, errors.join(' | '));
+    document.getElementById('out').innerHTML = out.join('\n') + '\n\n' + (failed ? '<span class="fail">' + failed + ' of ' + total + ' FAILED</span>' : '<span class="pass">ALL ' + total + ' PASSED</span>');
+    document.title = failed ? 'FAILED ' + failed : 'PASSED ' + total;
+  });
+})();
+</script></body></html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RajAtlas tests</title>
+  <style>body{font:14px/1.5 ui-monospace,Consolas,monospace;padding:1rem}.fail{color:#b00020;font-weight:700}.pass{color:#15803d}</style>
+</head>
+<body>
+  <h1>RajAtlas tests</h1>
+  <pre id="out"></pre>
+  <script src="assets/js/map.js"></script>
+  <script>
+    (function () {
+      var c = window.RajMap.core, D = Math.PI / 180, out = [], failed = 0, total = 0;
+      function check(name, ok, detail) {
+        total++; if (!ok) failed++;
+        out.push('<span class="' + (ok ? 'pass' : 'fail') + '">' + (ok ? 'PASS ' : 'FAIL ') + '</span>' + name + (detail ? '  (' + detail + ')' : ''));
+      }
+      function near(a, b, tol) { return Math.abs(a - b) <= tol; }
+
+      // 1. the projection origin maps to (0,0)
+      var o = c.albers(74, 27);
+      check('Albers: origin (74E, 27N) maps to (0, 0)', near(o[0], 0, 1e-12) && near(o[1], 0, 1e-12));
+
+      // 2. equal area: a 1x1 degree cell must keep its true spherical area (R = 1) wherever it sits in the map
+      function planarArea(lon0, lat0) {
+        var pts = [], i;
+        for (i = 0; i <= 40; i++) pts.push(c.albers(lon0 + i / 40, lat0));
+        for (i = 0; i <= 40; i++) pts.push(c.albers(lon0 + 1, lat0 + i / 40));
+        for (i = 0; i <= 40; i++) pts.push(c.albers(lon0 + 1 - i / 40, lat0 + 1));
+        for (i = 0; i <= 40; i++) pts.push(c.albers(lon0, lat0 + 1 - i / 40));
+        var a = 0; for (i = 0; i < pts.length; i++) { var p = pts[i], q = pts[(i + 1) % pts.length]; a += p[0] * q[1] - q[0] * p[1]; }
+        return Math.abs(a) / 2;
+      }
+      [[70, 23], [74, 27], [77, 29], [69, 28], [78, 24]].forEach(function (cell) {
+        var sphere = (1 * D) * (Math.sin((cell[1] + 1) * D) - Math.sin(cell[1] * D));
+        var rel = Math.abs(planarArea(cell[0], cell[1]) - sphere) / sphere;
+        check('Albers keeps area for the 1x1 degree cell at ' + cell[0] + 'E ' + cell[1] + 'N', rel < 2e-4, 'relative error ' + rel.toExponential(2));
+      });
+
+      // 3. 100 km along the central meridian is 100 km of projected length (scale bar is valid near the standard parallels)
+      var a = c.albers(74, 24), b = c.albers(74, 24 + 100 / 111.19);
+      var km = Math.hypot(b[0] - a[0], b[1] - a[1]) * c.EARTH_R_KM;
+      check('Scale bar: 100 km of ground is about 100 km on the map at 24N', near(km, 100, 0.6), km.toFixed(2) + ' km');
+
+      // 4. point in polygon: even-odd, with a hole
+      var square = [0, 0, 10, 0, 10, 10, 0, 10], hole = [4, 4, 6, 4, 6, 6, 4, 6];
+      check('pointInPolygon: inside the ring', c.pointInPolygon(2, 2, [square, hole]));
+      check('pointInPolygon: outside the ring', !c.pointInPolygon(12, 5, [square, hole]));
+      check('pointInPolygon: inside a hole counts as outside', !c.pointInPolygon(5, 5, [square, hole]));
+
+      // 5. quantile classes
+      var vals = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      var q = c.quantileClasses(vals, 5);
+      var counts = [0, 0, 0, 0, 0]; vals.forEach(function (v) { counts[q.classOf(v)]++; });
+      check('quantileClasses: ten values fall two per class', counts.join() === '2,2,2,2,2', counts.join());
+      var q2 = c.quantileClasses([2, 2, 2, 2, 3, 3, 3, 8], 5);
+      check('quantileClasses: repeated values never create empty or duplicate cut points', q2.cuts.length === new Set(q2.cuts).size && q2.cuts.every(function (x) { return x > 2; }), 'cuts ' + q2.cuts.join());
+      check('quantileClasses: class index is monotonic in the value', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].every(function (v, i, arr) { return i === 0 || q.classOf(v) >= q.classOf(arr[i - 1]); }));
+
+      // 6. luminance decides label colour
+      check('luminance: white is brighter than black', c.luminance('#ffffff') > 0.99 && c.luminance('#000000') < 0.01);
+      check('luminance: light ramp end is light, dark ramp end is dark', c.luminance('#f6e4d4') > 0.42 && c.luminance('#8f3412') < 0.42);
+
+      document.getElementById('out').innerHTML = out.join('\n') + '\n\n' + (failed ? '<span class="fail">' + failed + ' of ' + total + ' FAILED</span>' : '<span class="pass">ALL ' + total + ' PASSED</span>');
+      document.title = failed ? 'FAILED ' + failed + '/' + total : 'PASSED ' + total;
+    })();
+  </script>
+</body>
+</html>

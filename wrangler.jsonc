@@ -1,0 +1,10 @@
+{
+  // Cloudflare Workers settings for RajAtlas: a static website, no server code.
+  // `name` is also the project name in Cloudflare and the first part of the address: https://rajatlas.<your-subdomain>.workers.dev
+  "name": "rajatlas",
+  "compatibility_date": "2025-10-01",
+  "assets": {
+    "directory": "./site",
+    "not_found_handling": "404-page"
+  }
+}

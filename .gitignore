@@ -1,0 +1,6 @@
+# local environment and caches
+.venv/
+__pycache__/
+*.pyc
+# downloaded sources: recreate with tools/fetch_raw.py
+data/raw/

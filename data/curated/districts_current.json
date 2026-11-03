@@ -1,0 +1,674 @@
+{
+  "source": {
+    "title": "List of districts of Rajasthan",
+    "url": "https://en.wikipedia.org/wiki/List_of_districts_of_Rajasthan",
+    "publisher": "Wikipedia",
+    "licence": "CC BY-SA 4.0",
+    "revision_id": 1381020334,
+    "revision_timestamp": "2026-10-19T14:04:15Z",
+    "retrieved_utc": "2026-10-26T14:34:36Z",
+    "list_date_stated_by_page": "30 December 2024",
+    "stated_counts": {
+      "districts": 41,
+      "divisions": 7
+    }
+  },
+  "trust": {
+    "used": [
+      "district list",
+      "division of each district",
+      "official district websites"
+    ],
+    "kept_but_not_used": [
+      "area_km2_claimed",
+      "population_claimed"
+    ],
+    "reason": "no source or year named; internal contradictions (see data_quality)"
+  },
+  "data_quality": [
+    "identical claimed area 8,481 km2 for Ajmer and Beawar",
+    "identical claimed population 1,605,543 for Nagaur and Pali",
+    "infobox says area smallest is Dholpur (3,084) but the table gives Khairthal-Tijara (2,007) and Dholpur (3,084)",
+    "infobox says population lowest is Jaisalmer (669,919) but the table gives Salumbar (570,775) and Jaisalmer (669,919)",
+    "infobox says population highest is Jaipur (6,626,178) but the table gives Jaipur (6,046,835) and Jaipur (6,046,835)",
+    "the page names no source or census year for the area and population columns"
+  ],
+  "divisions": {
+    "Ajmer": [
+      "Ajmer",
+      "Beawar",
+      "Bhilwara",
+      "Didwana-Kuchaman",
+      "Nagaur",
+      "Tonk"
+    ],
+    "Bharatpur": [
+      "Bharatpur",
+      "Deeg",
+      "Dholpur",
+      "Karauli",
+      "Sawai Madhopur"
+    ],
+    "Bikaner": [
+      "Bikaner",
+      "Churu",
+      "Hanumangarh",
+      "Sri Ganganagar"
+    ],
+    "Jaipur": [
+      "Alwar",
+      "Dausa",
+      "Jaipur",
+      "Jhunjhunu",
+      "Khairthal-Tijara",
+      "Kotputli-Behror",
+      "Sikar"
+    ],
+    "Jodhpur": [
+      "Balotra",
+      "Barmer",
+      "Jaisalmer",
+      "Jalore",
+      "Jodhpur",
+      "Pali",
+      "Phalodi",
+      "Sirohi"
+    ],
+    "Kota": [
+      "Baran",
+      "Bundi",
+      "Jhalawar",
+      "Kota"
+    ],
+    "Udaipur": [
+      "Banswara",
+      "Chittorgarh",
+      "Dungarpur",
+      "Pratapgarh",
+      "Rajsamand",
+      "Salumbar",
+      "Udaipur"
+    ]
+  },
+  "districts": [
+    {
+      "id": "ajmer",
+      "name": {
+        "en": "Ajmer",
+        "hi": "अजमेर",
+        "ur": "اجمیر"
+      },
+      "status": "continuing",
+      "division_id": "ajmer",
+      "serial": 1,
+      "district_website": "https://ajmer.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 8481,
+      "population_claimed": 1531974
+    },
+    {
+      "id": "alwar",
+      "name": {
+        "en": "Alwar",
+        "hi": "अलवर",
+        "ur": "الور"
+      },
+      "status": "continuing",
+      "division_id": "jaipur",
+      "serial": 2,
+      "district_website": "https://alwar.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 8380,
+      "population_claimed": 2015275
+    },
+    {
+      "id": "balotra",
+      "name": {
+        "en": "Balotra",
+        "hi": "बालोतरा",
+        "ur": "بالوترا"
+      },
+      "status": "new_since_2011",
+      "division_id": "jodhpur",
+      "serial": 3,
+      "district_website": "https://balotra.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 10551,
+      "population_claimed": 1115751
+    },
+    {
+      "id": "banswara",
+      "name": {
+        "en": "Banswara",
+        "hi": "बाँसवाड़ा",
+        "ur": "بانسواڑہ"
+      },
+      "status": "continuing",
+      "division_id": "udaipur",
+      "serial": 4,
+      "district_website": "https://banswara.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 5037,
+      "population_claimed": 1798194
+    },
+    {
+      "id": "baran",
+      "name": {
+        "en": "Baran",
+        "hi": "बारां",
+        "ur": "باراں"
+      },
+      "status": "continuing",
+      "division_id": "kota",
+      "serial": 5,
+      "district_website": "https://baran.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 6992,
+      "population_claimed": 1223921
+    },
+    {
+      "id": "barmer",
+      "name": {
+        "en": "Barmer",
+        "hi": "बाड़मेर",
+        "ur": "باڑمیر"
+      },
+      "status": "continuing",
+      "division_id": "jodhpur",
+      "serial": 6,
+      "district_website": "https://Barmer.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 28387,
+      "population_claimed": 1488000
+    },
+    {
+      "id": "beawar",
+      "name": {
+        "en": "Beawar",
+        "hi": "ब्यावर",
+        "ur": "بیاور"
+      },
+      "status": "new_since_2011",
+      "division_id": "ajmer",
+      "serial": 7,
+      "district_website": "https://beawar.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 8481,
+      "population_claimed": 1094918
+    },
+    {
+      "id": "bharatpur",
+      "name": {
+        "en": "Bharatpur",
+        "hi": "भरतपुर",
+        "ur": "بھرت پور"
+      },
+      "status": "continuing",
+      "division_id": "bharatpur",
+      "serial": 8,
+      "district_website": "https://bharatpur.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 5066,
+      "population_claimed": 1475707
+    },
+    {
+      "id": "bhilwara",
+      "name": {
+        "en": "Bhilwara",
+        "hi": "भीलवाड़ा",
+        "ur": "بھیلواڑہ"
+      },
+      "status": "continuing",
+      "division_id": "ajmer",
+      "serial": 9,
+      "district_website": "https://Bhilwara.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 10455,
+      "population_claimed": 1589543
+    },
+    {
+      "id": "bikaner",
+      "name": {
+        "en": "Bikaner",
+        "hi": "बीकानेर",
+        "ur": "بیکانیر"
+      },
+      "status": "continuing",
+      "division_id": "bikaner",
+      "serial": 10,
+      "district_website": "https://bikaner.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 30247,
+      "population_claimed": 2367745
+    },
+    {
+      "id": "bundi",
+      "name": {
+        "en": "Bundi",
+        "hi": "बूँदी",
+        "ur": "بوندی"
+      },
+      "status": "continuing",
+      "division_id": "kota",
+      "serial": 11,
+      "district_website": "https://Bundi.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 5550,
+      "population_claimed": 1113725
+    },
+    {
+      "id": "chittorgarh",
+      "name": {
+        "en": "Chittorgarh",
+        "hi": "चित्तौड़गढ़",
+        "ur": "چتوڑ گڑھ"
+      },
+      "status": "continuing",
+      "division_id": "udaipur",
+      "serial": 12,
+      "district_website": "https://Chittorgarh.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 7822,
+      "population_claimed": 1544392
+    },
+    {
+      "id": "churu",
+      "name": {
+        "en": "Churu",
+        "hi": "चूरू",
+        "ur": "چورو"
+      },
+      "status": "continuing",
+      "division_id": "bikaner",
+      "serial": 13,
+      "district_website": "https://Churu.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 13858,
+      "population_claimed": 2041172
+    },
+    {
+      "id": "dausa",
+      "name": {
+        "en": "Dausa",
+        "hi": "दौसा",
+        "ur": "دوسہ"
+      },
+      "status": "continuing",
+      "division_id": "jaipur",
+      "serial": 14,
+      "district_website": "https://Dausa.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 3432,
+      "population_claimed": 1637226
+    },
+    {
+      "id": "deeg",
+      "name": {
+        "en": "Deeg",
+        "hi": "डीग",
+        "ur": "ڈیگ"
+      },
+      "status": "new_since_2011",
+      "division_id": "bharatpur",
+      "serial": 15,
+      "district_website": "https://Deeg.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 2169,
+      "population_claimed": 1072755
+    },
+    {
+      "id": "didwana-kuchaman",
+      "name": {
+        "en": "Didwana-Kuchaman",
+        "hi": "डीडवाना-कुचामन",
+        "ur": "ڈیڈوانہ-کچامن"
+      },
+      "status": "new_since_2011",
+      "division_id": "ajmer",
+      "serial": 16,
+      "district_website": "https://deedwana-kuchaman.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 6796,
+      "population_claimed": 1625837
+    },
+    {
+      "id": "dholpur",
+      "name": {
+        "en": "Dholpur",
+        "hi": "धौलपुर",
+        "ur": "دھولپور"
+      },
+      "status": "continuing",
+      "division_id": "bharatpur",
+      "serial": 17,
+      "district_website": "https://dholpur.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 3084,
+      "population_claimed": 1207293
+    },
+    {
+      "id": "dungarpur",
+      "name": {
+        "en": "Dungarpur",
+        "hi": "डूंगरपुर",
+        "ur": "ڈونگرپور"
+      },
+      "status": "continuing",
+      "division_id": "udaipur",
+      "serial": 18,
+      "district_website": "https://Dungarpur.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 3770,
+      "population_claimed": 1388906
+    },
+    {
+      "id": "hanumangarh",
+      "name": {
+        "en": "Hanumangarh",
+        "hi": "हनुमानगढ़",
+        "ur": "ہنومان گڑھ"
+      },
+      "status": "continuing",
+      "division_id": "bikaner",
+      "serial": 19,
+      "district_website": "https://Hanumangarh.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 9656,
+      "population_claimed": 1774692
+    },
+    {
+      "id": "jaipur",
+      "name": {
+        "en": "Jaipur",
+        "hi": "जयपुर",
+        "ur": "جے پور"
+      },
+      "status": "continuing",
+      "division_id": "jaipur",
+      "serial": 20,
+      "district_website": "https://Jaipur.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 11152,
+      "population_claimed": 6046835
+    },
+    {
+      "id": "jaisalmer",
+      "name": {
+        "en": "Jaisalmer",
+        "hi": "जैसलमेर",
+        "ur": "جیسلمیر"
+      },
+      "status": "continuing",
+      "division_id": "jodhpur",
+      "serial": 21,
+      "district_website": "https://Jaisalmer.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 38401,
+      "population_claimed": 669919
+    },
+    {
+      "id": "jalore",
+      "name": {
+        "en": "Jalore",
+        "hi": "जालौर",
+        "ur": "جالور"
+      },
+      "status": "continuing",
+      "division_id": "jodhpur",
+      "serial": 22,
+      "district_website": "https://Jalore.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 10640,
+      "population_claimed": 1828730
+    },
+    {
+      "id": "jhalawar",
+      "name": {
+        "en": "Jhalawar",
+        "hi": "झालावाड़",
+        "ur": "جھالاواڑ"
+      },
+      "status": "continuing",
+      "division_id": "kota",
+      "serial": 23,
+      "district_website": "https://Jhalawar.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 6928,
+      "population_claimed": 1411129
+    },
+    {
+      "id": "jhunjhunu",
+      "name": {
+        "en": "Jhunjhunu",
+        "hi": "झुंझुनूं",
+        "ur": "جھنجھنوں"
+      },
+      "status": "continuing",
+      "division_id": "jaipur",
+      "serial": 24,
+      "district_website": "https://jhunjhunu.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 5928,
+      "population_claimed": 2137045
+    },
+    {
+      "id": "jodhpur",
+      "name": {
+        "en": "Jodhpur",
+        "hi": "जोधपुर",
+        "ur": "جودھ پور"
+      },
+      "status": "continuing",
+      "division_id": "jodhpur",
+      "serial": 25,
+      "district_website": "https://Jodhpur.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 22850,
+      "population_claimed": 2955582
+    },
+    {
+      "id": "karauli",
+      "name": {
+        "en": "Karauli",
+        "hi": "करौली",
+        "ur": "کرولی"
+      },
+      "status": "continuing",
+      "division_id": "bharatpur",
+      "serial": 26,
+      "district_website": "https://karauli.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 5043,
+      "population_claimed": 1458248
+    },
+    {
+      "id": "khairthal-tijara",
+      "name": {
+        "en": "Khairthal-Tijara",
+        "hi": "खैरथल-तिजारा",
+        "ur": "کھیرتھل-تیجارا"
+      },
+      "status": "new_since_2011",
+      "division_id": "jaipur",
+      "serial": 27,
+      "district_website": "https://khairthaltijara.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 2007,
+      "population_claimed": 966821
+    },
+    {
+      "id": "kota",
+      "name": {
+        "en": "Kota",
+        "hi": "कोटा",
+        "ur": "کوٹا"
+      },
+      "status": "continuing",
+      "division_id": "kota",
+      "serial": 28,
+      "district_website": "https://Kota.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 5217,
+      "population_claimed": 1951014
+    },
+    {
+      "id": "kotputli-behror",
+      "name": {
+        "en": "Kotputli-Behror",
+        "hi": "कोटपूतली-बहरोड़",
+        "ur": "کوٹپتلی-بہرور"
+      },
+      "status": "new_since_2011",
+      "division_id": "jaipur",
+      "serial": 29,
+      "district_website": "https://kotputlibehror.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 2920,
+      "population_claimed": 1271426
+    },
+    {
+      "id": "nagaur",
+      "name": {
+        "en": "Nagaur",
+        "hi": "नागौर",
+        "ur": "ناگور"
+      },
+      "status": "continuing",
+      "division_id": "ajmer",
+      "serial": 30,
+      "district_website": "https://Nagaur.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 17718,
+      "population_claimed": 1605543
+    },
+    {
+      "id": "pali",
+      "name": {
+        "en": "Pali",
+        "hi": "पाली",
+        "ur": "پالی"
+      },
+      "status": "continuing",
+      "division_id": "jodhpur",
+      "serial": 31,
+      "district_website": "https://Pali.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 12387,
+      "population_claimed": 1605543
+    },
+    {
+      "id": "phalodi",
+      "name": {
+        "en": "Phalodi",
+        "hi": "फलोदी",
+        "ur": "پھلودی"
+      },
+      "status": "new_since_2011",
+      "division_id": "jodhpur",
+      "serial": 32,
+      "district_website": "https://phalodi.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 9408,
+      "population_claimed": 731583
+    },
+    {
+      "id": "pratapgarh",
+      "name": {
+        "en": "Pratapgarh",
+        "hi": "प्रतापगढ़",
+        "ur": "پرتاپ گڑھ"
+      },
+      "status": "continuing",
+      "division_id": "udaipur",
+      "serial": 33,
+      "district_website": "https://Pratapgarh.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 4117,
+      "population_claimed": 867848
+    },
+    {
+      "id": "rajsamand",
+      "name": {
+        "en": "Rajsamand",
+        "hi": "राजसमंद",
+        "ur": "راجسمند"
+      },
+      "status": "continuing",
+      "division_id": "udaipur",
+      "serial": 34,
+      "district_website": "https://Rajsamand.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 4550,
+      "population_claimed": 1156597
+    },
+    {
+      "id": "salumbar",
+      "name": {
+        "en": "Salumbar",
+        "hi": "सलूंबर",
+        "ur": "سلومبر"
+      },
+      "status": "new_since_2011",
+      "division_id": "udaipur",
+      "serial": 35,
+      "district_website": "https://salumber.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 2480,
+      "population_claimed": 570775
+    },
+    {
+      "id": "sawai-madhopur",
+      "name": {
+        "en": "Sawai Madhopur",
+        "hi": "सवाई माधोपुर",
+        "ur": "سوائی مادھوپور"
+      },
+      "status": "continuing",
+      "division_id": "bharatpur",
+      "serial": 36,
+      "district_website": "https://sawaimadhopur.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 10527,
+      "population_claimed": 1335551
+    },
+    {
+      "id": "sikar",
+      "name": {
+        "en": "Sikar",
+        "hi": "सीकर",
+        "ur": "سیکر"
+      },
+      "status": "continuing",
+      "division_id": "jaipur",
+      "serial": 37,
+      "district_website": "https://Sikar.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 7742,
+      "population_claimed": 2677333
+    },
+    {
+      "id": "sirohi",
+      "name": {
+        "en": "Sirohi",
+        "hi": "सिरोही",
+        "ur": "سروہی"
+      },
+      "status": "continuing",
+      "division_id": "jodhpur",
+      "serial": 38,
+      "district_website": "https://Sirohi.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 5136,
+      "population_claimed": 1036346
+    },
+    {
+      "id": "sri-ganganagar",
+      "name": {
+        "en": "Sri Ganganagar",
+        "hi": "श्री गंगानगर",
+        "ur": "سری گنگا نگر"
+      },
+      "status": "continuing",
+      "division_id": "bikaner",
+      "serial": 39,
+      "district_website": "https://sriganganagar.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 11154,
+      "population_claimed": 1969168
+    },
+    {
+      "id": "tonk",
+      "name": {
+        "en": "Tonk",
+        "hi": "टोंक",
+        "ur": "ٹونک"
+      },
+      "status": "continuing",
+      "division_id": "ajmer",
+      "serial": 40,
+      "district_website": "https://Tonk.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 7194,
+      "population_claimed": 1421326
+    },
+    {
+      "id": "udaipur",
+      "name": {
+        "en": "Udaipur",
+        "hi": "उदयपुर",
+        "ur": "اودے پور"
+      },
+      "status": "continuing",
+      "division_id": "udaipur",
+      "serial": 41,
+      "district_website": "https://Udaipur.rajasthan.gov.in/home/dptHome",
+      "area_km2_claimed": 11724,
+      "population_claimed": 2497645
+    }
+  ],
+  "counts": {
+    "total": 41,
+    "continuing": 33,
+    "new_since_2011": 8
+  }
+}
